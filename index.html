@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pretreatment Technologies — Precision Chemistry for Modern Industry</title>
+    <meta name="description" content="Pretreatment Technologies delivers high-performance industrial chemicals, phosphating solutions, essential oils, and eco-friendly products. Trusted by automotive, aerospace, and healthcare industries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            --accent: #0071e3;
+            --accent-dark: #0056b3;
+            --accent-glow: rgba(0, 113, 227, 0.15);
+            --teal: #0d9488;
+            --teal-glow: rgba(13, 148, 136, 0.12);
+            --amber: #d97706;
+            --emerald: #059669;
+            --violet: #7c3aed;
+            --radius: 16px;
+            --radius-sm: 8px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.2s ease;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .container-wide {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav.scrolled .nav-logo {
+            color: #981917;
+        }
+
+        .nav-logo svg {
+            height: 38px;
+            width: auto;
+            transition: filter var(--transition);
+        }
+
+        .nav:not(.scrolled) .nav-logo svg text {
+            fill: #ffffff;
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            transition: color var(--transition-fast);
+            letter-spacing: -0.01em;
+        }
+
+        .nav.scrolled .nav-links a {
+            color: var(--gray-500);
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: var(--gray-900);
+        }
+
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--white);
+            color: var(--gray-900) !important;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            font-size: 0.875rem;
+            transition: all var(--transition-fast) !important;
+            border: 1px solid transparent;
+        }
+
+        .nav.scrolled .nav-cta {
+            background: #981917;
+            color: var(--white) !important;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Mobile menu toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled .nav-toggle span {
+            background: var(--gray-900);
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(30px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu a:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu a:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu a:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu a:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu a:nth-child(6) { transition-delay: 0.35s; }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-900);
+            overflow: hidden;
+        }
+
+        #molecule-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(0, 113, 227, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 30%, rgba(13, 148, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 40%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.55);
+            max-width: 600px;
+            margin: 0 auto 44px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: var(--white);
+            color: var(--gray-900);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes scroll-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ============================================
+           TRUSTED BY / MARQUEE
+           ============================================ */
+        .trust-bar {
+            padding: 60px 0;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .trust-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .trust-marquee {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-300);
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+            transition: color var(--transition);
+        }
+
+        .trust-item:hover {
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           ABOUT / STORY
+           ============================================ */
+        .about {
+            padding: 140px 0;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .section-text {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .about-visual-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            border-radius: var(--radius-xl);
+        }
+
+        .about-visual-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.15;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        .about-visual-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .about-stat-big {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .about-stat-label {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 400;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border-radius: var(--radius);
+            background: var(--gray-50);
+            transition: all var(--transition);
+        }
+
+        .about-feature:hover {
+            background: var(--accent-glow);
+        }
+
+        .about-feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-feature-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            line-height: 1.4;
+        }
+
+        /* ============================================
+           PRODUCTS
+           ============================================ */
+        .products {
+            padding: 140px 0;
+            background: var(--gray-50);
+        }
+
+        .products-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 72px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .product-card:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-8px);
+        }
+
+        .product-card-inner {
+            padding: 48px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            filter: blur(80px);
+            z-index: 1;
+        }
+
+        .product-card:hover .product-card-glow {
+            opacity: 1;
+        }
+
+        .product-card-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-300);
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .product-card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            font-size: 1.6rem;
+            transition: transform var(--transition);
+        }
+
+        .product-card:hover .product-card-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .product-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .product-card p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .product-tag {
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--gray-50);
+            color: var(--gray-600);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-fast);
+        }
+
+        .product-card:hover .product-tag {
+            border-color: transparent;
+        }
+
+        .product-card-arrow {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            z-index: 2;
+        }
+
+        .product-card:hover .product-card-arrow {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .product-card-arrow svg {
+            width: 16px;
+            height: 16px;
+            transition: transform var(--transition);
+        }
+
+        .product-card:hover .product-card-arrow svg {
+            transform: translate(2px, -2px);
+        }
+
+        /* Card color themes */
+        .card-blue .product-card-icon { background: rgba(0, 113, 227, 0.08); color: var(--accent); }
+        .card-blue .product-card-glow { background: rgba(0, 113, 227, 0.3); }
+        .card-teal .product-card-icon { background: rgba(13, 148, 136, 0.08); color: var(--teal); }
+        .card-teal .product-card-glow { background: rgba(13, 148, 136, 0.3); }
+        .card-amber .product-card-icon { background: rgba(217, 119, 6, 0.08); color: var(--amber); }
+        .card-amber .product-card-glow { background: rgba(217, 119, 6, 0.3); }
+        .card-emerald .product-card-icon { background: rgba(5, 150, 105, 0.08); color: var(--emerald); }
+        .card-emerald .product-card-glow { background: rgba(5, 150, 105, 0.3); }
+
+        /* ============================================
+           INDUSTRIES MARQUEE
+           ============================================ */
+        .industries {
+            padding: 140px 0;
+            background: var(--gray-900);
+            overflow: hidden;
+        }
+
+        .industries-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 72px;
+        }
+
+        .industries-header .section-eyebrow {
+            color: var(--teal);
+        }
+
+        .industries-header .section-title {
+            color: var(--white);
+        }
+
+        .industries-header .section-text {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .industries-scroll {
+            display: flex;
+            gap: 20px;
+            animation: scroll-left 30s linear infinite;
+            width: max-content;
+        }
+
+        .industries-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .industry-chip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 32px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            white-space: nowrap;
+            transition: all var(--transition);
+            cursor: default;
+        }
+
+        .industry-chip:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+
+        .industry-chip-icon {
+            font-size: 1.3rem;
+        }
+
+        .industry-chip-text {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Row 2 scrolls opposite */
+        .industries-scroll-reverse {
+            animation: scroll-right 35s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ============================================
+           STATS / WHY CHOOSE US
+           ============================================ */
+        .stats {
+            padding: 140px 0;
+            background: var(--white);
+        }
+
+        .stats-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .stat-card {
+            background: var(--gray-50);
+            padding: 52px 32px;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .stat-card:hover {
+            background: var(--white);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-suffix {
+            font-size: 0.6em;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        /* ============================================
+           PROCESS / HOW WE WORK
+           ============================================ */
+        .process {
+            padding: 140px 0;
+            background: var(--gray-50);
+        }
+
+        .process-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-line {
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .process-line-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to bottom, var(--accent), var(--teal));
+            transition: height 0.1s linear;
+            border-radius: 2px;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 84px;
+            padding-bottom: 64px;
+        }
+
+        .process-step:last-child {
+            padding-bottom: 0;
+        }
+
+        .process-dot {
+            position: absolute;
+            left: 22px;
+            top: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .process-step.active .process-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 6px var(--accent-glow);
+        }
+
+        .process-step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gray-300);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .process-step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .process-step p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        /* ============================================
+           TESTIMONIAL / HIGHLIGHT
+           ============================================ */
+        .highlight {
+            padding: 140px 0;
+            background: var(--gray-900);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(6rem, 15vw, 18rem);
+            font-weight: 800;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
+            letter-spacing: -0.05em;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .highlight-content {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .highlight-quote {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .highlight-author {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .highlight-author strong {
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           CTA
+           ============================================ */
+        .cta {
+            padding: 140px 0;
+            background: var(--white);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--gray-900) 0%, #1a1a2e 50%, var(--gray-900) 100%);
+            border-radius: var(--radius-xl);
+            padding: 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 113, 227, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(13, 148, 136, 0.1) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        .cta-box-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn-primary {
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        .cta-buttons .btn-secondary {
+            border-color: rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .cta-info {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .cta-info-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--teal);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 80px 0 40px;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            line-height: 1.7;
+        }
+
+        .footer-col-title {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--gray-900);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--gray-900);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--gray-200);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            transition: all var(--transition-fast);
+            font-size: 0.85rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--gray-900);
+            border-color: var(--gray-900);
+            color: var(--white);
+        }
+
+        /* ============================================
+           CUSTOM CURSOR GLOW (desktop only)
+           ============================================ */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.06), transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .cursor-glow.visible {
+            opacity: 1;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-visual {
+                height: 350px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card-inner {
+                padding: 32px 28px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-step {
+                padding-left: 64px;
+            }
+
+            .process-line {
+                left: 22px;
+            }
+
+            .process-dot {
+                left: 12px;
+            }
+
+            .cta-box {
+                padding: 48px 28px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .trust-marquee {
+                gap: 30px;
+            }
+
+            .cta-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .highlight-quote {
+                font-size: clamp(1.3rem, 5vw, 2rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stat-big {
+                font-size: 4rem;
+            }
+
+            .hero-scroll-indicator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cursor glow effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" font-family="Ubuntu, sans-serif" font-weight="700" font-size="20" fill="#981917">Pretreatment</text>
+                    <text x="0" y="40" font-family="Ubuntu, sans-serif" font-weight="700" font-size="14" fill="#981917">Technologies</text>
+                </svg>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobile()">About</a>
+        <a href="products.html" onclick="closeMobile()">Products</a>
+        <a href="#industries" onclick="closeMobile()">Industries</a>
+        <a href="#process" onclick="closeMobile()">Process</a>
+        <a href="#contact" onclick="closeMobile()">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <canvas id="molecule-canvas"></canvas>
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <div class="hero-badge reveal stagger-1">
+                <span class="hero-badge-dot"></span>
+                Precision Chemistry Since 1989
+            </div>
+            <h1 class="hero-title reveal stagger-2">
+                Where Science Meets<br><span class="gradient-text">Surface Perfection</span>
+            </h1>
+            <p class="hero-subtitle reveal stagger-3">
+                One of India's leading manufacturers and suppliers of phosphating &amp; fine chemicals. From advanced surface treatment solutions to pure essential oils — providing solutions in a better way.
+            </p>
+            <div class="hero-buttons reveal stagger-4">
+                <a href="#products" class="btn-primary">
+                    Explore Products
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    Talk to Our Experts
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container-wide">
+            <p class="trust-label reveal">Trusted Across Industries</p>
+            <div class="trust-marquee reveal stagger-1">
+                <span class="trust-item">Automotive</span>
+                <span class="trust-item">Aerospace</span>
+                <span class="trust-item">Healthcare</span>
+                <span class="trust-item">Manufacturing</span>
+                <span class="trust-item">Metal Finishing</span>
+                <span class="trust-item">Food Processing</span>
+                <span class="trust-item">Electronics</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal-left">
+                    <p class="section-eyebrow">Our Story</p>
+                    <h2 class="section-title">Three Decades of Chemical Excellence</h2>
+                    <p class="section-text">
+                        Established in 1989, Pretreatment Technologies is one of India's leading manufacturers and suppliers of a wide range of Phosphating &amp; Fine Chemicals. With more than three decades of experience, we formulate pure and safe chemicals backed by transparent, well-documented business transactions — earning a reliable and trusted reputation across the globe.
+                    </p>
+                    <p class="section-text">
+                        We adhere to rigorous quality parameters during formulation, ensuring our chemicals are at par with international standards. Quality testing is done in our state-of-the-art laboratory under experienced quality auditors. Through our qualitative approach, we customize chemicals to the exact specifications of our clients.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <span class="about-feature-text">Rigorously tested formulations</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <span class="about-feature-text">ISO-grade quality control</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            </div>
+                            <span class="about-feature-text">Expert technical guidance</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <span class="about-feature-text">Cost-effective solutions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual reveal-right">
+                    <div class="about-visual-bg"></div>
+                    <div class="about-visual-pattern"></div>
+                    <div class="about-visual-content">
+                        <div class="about-stat-big" id="yearsCounter">35+</div>
+                        <div class="about-stat-label">Years of Chemical Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="container-wide">
+            <div class="products-header">
+                <p class="section-eyebrow reveal">What We Offer</p>
+                <h2 class="section-title reveal stagger-1">Chemistry Engineered for Every Challenge</h2>
+                <p class="section-text reveal stagger-2">
+                    Four distinct product lines, one unifying standard of excellence. Each formulated to outperform, each designed to deliver.
+                </p>
+            </div>
+            <div class="products-grid">
+                <!-- Card 1: Industrial Chemicals -->
+                <a href="products.html#industrial" class="product-card card-blue reveal stagger-1" data-tilt>
+                    <div class="product-card-glow"></div>
+                    <div class="product-card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                    <div class="product-card-inner">
+                        <div class="product-card-number">01</div>
+                        <div class="product-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                        </div>
+                        <h3>Industrial &amp; Phosphating Chemicals</h3>
+                        <p>Advanced pretreatment formulations that prepare metal surfaces for coating with precision. From iron and zinc phosphating to multi-metal cleaners — engineered for maximum adhesion and corrosion resistance.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">PRETREAT 35</span>
+                            <span class="product-tag">PRETREAT MN</span>
+                            <span class="product-tag">PRETREAT 10</span>
+                            <span class="product-tag">Top Coat EX</span>
+                            <span class="product-tag">Zinc Dust</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Essential Oils -->
+                <a href="products.html#essential-oils" class="product-card card-teal reveal stagger-2" data-tilt>
+                    <div class="product-card-glow"></div>
+                    <div class="product-card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                    <div class="product-card-inner">
+                        <div class="product-card-number">02</div>
+                        <div class="product-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-2.24 9-5v-4"/><path d="M12 22c-4.97 0-9-2.24-9-5v-4"/><ellipse cx="12" cy="8" rx="9" ry="5"/><path d="M12 8v14"/><path d="m7 10.5 5 3 5-3"/></svg>
+                        </div>
+                        <h3>Pure Essential Oils</h3>
+                        <p>100% pure, carefully sourced essential and carrier oils that nurture body, mind, and soul. From soothing lavender to invigorating peppermint — nature's finest, bottled with integrity. Proudly made in India.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Lavender</span>
+                            <span class="product-tag">Peppermint</span>
+                            <span class="product-tag">Eucalyptus</span>
+                            <span class="product-tag">Tea Tree</span>
+                            <span class="product-tag">Carrier Oils</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: PPE -->
+                <a href="products.html#ppe" class="product-card card-amber reveal stagger-3" data-tilt>
+                    <div class="product-card-glow"></div>
+                    <div class="product-card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                    <div class="product-card-inner">
+                        <div class="product-card-number">03</div>
+                        <div class="product-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Personal Protective Equipment</h3>
+                        <p>High-quality surgical masks and finger cots crafted from premium materials. Designed for maximum protection and comfort across healthcare, food processing, and industrial environments.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Surgical Masks</span>
+                            <span class="product-tag">Finger Cots</span>
+                            <span class="product-tag">Safety Gear</span>
+                            <span class="product-tag">Medical Grade</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: Household Products -->
+                <a href="products.html#household" class="product-card card-emerald reveal stagger-4" data-tilt>
+                    <div class="product-card-glow"></div>
+                    <div class="product-card-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                    </div>
+                    <div class="product-card-inner">
+                        <div class="product-card-number">04</div>
+                        <div class="product-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                        </div>
+                        <h3>Eco-Friendly Household Products</h3>
+                        <p>Natural, non-toxic cleaning and household solutions that are safe for your family and the environment. Effective formulations that prove green doesn't mean compromise.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">All-Purpose Cleaners</span>
+                            <span class="product-tag">Laundry Care</span>
+                            <span class="product-tag">Non-Toxic</span>
+                            <span class="product-tag">Eco-Friendly</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="industries-header">
+                <p class="section-eyebrow reveal">Industries We Serve</p>
+                <h2 class="section-title reveal stagger-1">Powering Progress Across Sectors</h2>
+                <p class="section-text reveal stagger-2">
+                    Our chemistry works behind the scenes in the products and processes that shape modern life.
+                </p>
+            </div>
+        </div>
+        <div class="industries-scroll" id="scrollRow1">
+            <div class="industry-chip"><span class="industry-chip-icon">&#9881;</span><span class="industry-chip-text">Automotive Manufacturing</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9992;</span><span class="industry-chip-text">Aerospace & Defense</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9764;</span><span class="industry-chip-text">Healthcare & Medical</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9879;</span><span class="industry-chip-text">Heavy Engineering</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9889;</span><span class="industry-chip-text">Electronics & Tech</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127968;</span><span class="industry-chip-text">Construction & Architecture</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127807;</span><span class="industry-chip-text">Food & Beverage</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128268;</span><span class="industry-chip-text">Energy & Utilities</span></div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="industry-chip"><span class="industry-chip-icon">&#9881;</span><span class="industry-chip-text">Automotive Manufacturing</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9992;</span><span class="industry-chip-text">Aerospace & Defense</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9764;</span><span class="industry-chip-text">Healthcare & Medical</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9879;</span><span class="industry-chip-text">Heavy Engineering</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9889;</span><span class="industry-chip-text">Electronics & Tech</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127968;</span><span class="industry-chip-text">Construction & Architecture</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127807;</span><span class="industry-chip-text">Food & Beverage</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128268;</span><span class="industry-chip-text">Energy & Utilities</span></div>
+        </div>
+        <div class="industries-scroll industries-scroll-reverse" id="scrollRow2">
+            <div class="industry-chip"><span class="industry-chip-icon">&#128296;</span><span class="industry-chip-text">Metal Finishing & Plating</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127981;</span><span class="industry-chip-text">Industrial Coatings</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128139;</span><span class="industry-chip-text">Wellness & Aromatherapy</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128137;</span><span class="industry-chip-text">Pharmaceutical</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9937;</span><span class="industry-chip-text">Oil & Gas</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128666;</span><span class="industry-chip-text">Transportation & Logistics</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127793;</span><span class="industry-chip-text">Agriculture</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128161;</span><span class="industry-chip-text">Research & Development</span></div>
+            <!-- Duplicate -->
+            <div class="industry-chip"><span class="industry-chip-icon">&#128296;</span><span class="industry-chip-text">Metal Finishing & Plating</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127981;</span><span class="industry-chip-text">Industrial Coatings</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128139;</span><span class="industry-chip-text">Wellness & Aromatherapy</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128137;</span><span class="industry-chip-text">Pharmaceutical</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#9937;</span><span class="industry-chip-text">Oil & Gas</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128666;</span><span class="industry-chip-text">Transportation & Logistics</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#127793;</span><span class="industry-chip-text">Agriculture</span></div>
+            <div class="industry-chip"><span class="industry-chip-icon">&#128161;</span><span class="industry-chip-text">Research & Development</span></div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-header">
+                <p class="section-eyebrow reveal">By The Numbers</p>
+                <h2 class="section-title reveal stagger-1">The Proof Is in the Performance</h2>
+            </div>
+            <div class="stats-grid reveal stagger-2">
+                <div class="stat-card">
+                    <div class="stat-number"><span class="counter" data-target="100">0</span><span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Products in our portfolio</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="counter" data-target="8">0</span><span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Industries served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="counter" data-target="500">0</span><span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Satisfied clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><span class="counter" data-target="99">0</span><span class="stat-suffix">%</span></div>
+                    <div class="stat-label">Quality consistency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="process-header">
+                <p class="section-eyebrow reveal">How We Work</p>
+                <h2 class="section-title reveal stagger-1">From Consultation to Delivery</h2>
+                <p class="section-text reveal stagger-2">
+                    A streamlined process built on partnership. We don't just sell chemicals — we solve problems.
+                </p>
+            </div>
+            <div class="process-timeline reveal stagger-3">
+                <div class="process-line">
+                    <div class="process-line-fill" id="processLineFill"></div>
+                </div>
+                <div class="process-step" data-step="1">
+                    <div class="process-dot"></div>
+                    <div class="process-step-number">Step 01</div>
+                    <h3>Understand Your Needs</h3>
+                    <p>We begin by listening. Our technical team works with you to understand your specific requirements, surface types, environmental constraints, and performance goals.</p>
+                </div>
+                <div class="process-step" data-step="2">
+                    <div class="process-dot"></div>
+                    <div class="process-step-number">Step 02</div>
+                    <h3>Formulate the Solution</h3>
+                    <p>Based on your needs, we recommend the optimal chemistry from our portfolio or develop a custom formulation. Every product is lab-verified before it reaches you.</p>
+                </div>
+                <div class="process-step" data-step="3">
+                    <div class="process-dot"></div>
+                    <div class="process-step-number">Step 03</div>
+                    <h3>Test & Validate</h3>
+                    <p>Before full deployment, we conduct rigorous testing to ensure performance meets our exacting standards. We only move forward when results are flawless.</p>
+                </div>
+                <div class="process-step" data-step="4">
+                    <div class="process-dot"></div>
+                    <div class="process-step-number">Step 04</div>
+                    <h3>Deliver & Support</h3>
+                    <p>On-time delivery backed by ongoing technical support. Our relationship doesn't end at the invoice — we're your long-term chemistry partner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight / Quote -->
+    <section class="highlight">
+        <div class="highlight-bg-text">EXCELLENCE</div>
+        <div class="container">
+            <div class="highlight-content reveal-scale">
+                <p class="highlight-quote">
+                    "We don't just supply chemicals.<br>We engineer confidence in every surface, every product, and every process we touch."
+                </p>
+                <p class="highlight-author">
+                    <strong>Pretreatment Technologies</strong> — Our Promise
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-box reveal-scale">
+                <div class="cta-box-content">
+                    <p class="section-eyebrow" style="color: var(--teal);">Let's Work Together</p>
+                    <h2 class="cta-title">Ready to Transform Your Process?</h2>
+                    <p class="cta-text">
+                        Whether you need industrial pretreatment chemicals, essential oils, or eco-friendly solutions — our team is ready to help you find the perfect fit.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="mailto:pretreatmenttechnologies@gmail.com" class="btn-primary">
+                            Email Us
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://pretreatmenttechnologies.com" target="_blank" class="btn-secondary">
+                            Visit Our Store
+                        </a>
+                    </div>
+                    <div class="cta-info">
+                        <div class="cta-info-item">
+                            <svg class="cta-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Quality Guaranteed
+                        </div>
+                        <div class="cta-info-item">
+                            <svg class="cta-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            Fast Response Time
+                        </div>
+                        <div class="cta-info-item">
+                            <svg class="cta-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            Dedicated Support
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+                            <text x="0" y="24" font-family="Ubuntu, sans-serif" font-weight="700" font-size="20" fill="#981917">Pretreatment</text>
+                            <text x="0" y="40" font-family="Ubuntu, sans-serif" font-weight="700" font-size="14" fill="#981917">Technologies</text>
+                        </svg>
+                    </div>
+                    <p class="footer-desc" style="font-style:italic;color:var(--gray-500);margin-bottom:8px;font-size:0.85rem;">Providing solutions in a better way</p>
+                    <p class="footer-desc">
+                        Your trusted partner for high-performance industrial chemicals, pure essential oils, personal protective equipment, and eco-friendly household solutions. Proudly made in India.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">Industrial Chemicals</a></li>
+                        <li><a href="#products">Phosphating Solutions</a></li>
+                        <li><a href="#products">Essential Oils</a></li>
+                        <li><a href="#products">PPE & Safety</a></li>
+                        <li><a href="#products">Household Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#industries">Industries</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-col-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:pretreatmenttechnologies@gmail.com">Email Us</a></li>
+                        <li><a href="https://pretreatmenttechnologies.com" target="_blank">Online Store</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 Pretreatment Technologies. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="Email">@</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script src="site-data.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // =========================================
+        // POPULATE FROM SITE DATA
+        // =========================================
+        function populateFromData() {
+            if (typeof SITE_DATA === 'undefined') return;
+            const d = SITE_DATA;
+
+            // Hero
+            const badge = document.querySelector('.hero-badge');
+            if (badge) badge.innerHTML = '<span class="hero-badge-dot"></span>' + d.hero.badge;
+            const title = document.querySelector('.hero-title');
+            if (title) title.innerHTML = d.hero.titleLine1 + '<br><span class="gradient-text">' + d.hero.titleLine2 + '</span>';
+            const subtitle = document.querySelector('.hero-subtitle');
+            if (subtitle) subtitle.textContent = d.hero.subtitle;
+
+            // About
+            const aboutTitle = document.querySelector('#about .section-title');
+            if (aboutTitle) aboutTitle.textContent = d.about.title;
+            const aboutTexts = document.querySelectorAll('#about .section-text');
+            if (aboutTexts[0]) aboutTexts[0].textContent = d.about.paragraph1;
+            if (aboutTexts[1]) aboutTexts[1].textContent = d.about.paragraph2;
+            const statBig = document.getElementById('yearsCounter');
+            if (statBig) statBig.textContent = d.about.statNumber;
+
+            // Stats
+            const statCards = document.querySelectorAll('.stat-card');
+            d.stats.forEach((stat, i) => {
+                if (statCards[i]) {
+                    const num = statCards[i].querySelector('.counter');
+                    const suf = statCards[i].querySelector('.stat-suffix');
+                    const lbl = statCards[i].querySelector('.stat-label');
+                    if (num) num.setAttribute('data-target', stat.number);
+                    if (suf) suf.textContent = stat.suffix;
+                    if (lbl) lbl.textContent = stat.label;
+                }
+            });
+
+            // Process
+            const steps = document.querySelectorAll('.process-step');
+            d.process.forEach((step, i) => {
+                if (steps[i]) {
+                    const h3 = steps[i].querySelector('h3');
+                    const p = steps[i].querySelector('p');
+                    if (h3) h3.textContent = step.title;
+                    if (p) p.textContent = step.description;
+                }
+            });
+
+            // Contact email
+            const ctaEmail = document.querySelector('.cta-buttons .btn-primary[href^="mailto"]');
+            if (ctaEmail) ctaEmail.href = 'mailto:' + d.company.email;
+        }
+
+        populateFromData();
+
+        // =========================================
+        // MOLECULE CANVAS ANIMATION
+        // =========================================
+        const canvas = document.getElementById('molecule-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Mouse interaction
+                if (mouse.x !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150;
+                        this.x -= dx * force * 0.01;
+                        this.y -= dy * force * 0.01;
+                    }
+                }
+
+                // Wrap around
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), 150);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        const opacity = (1 - dist / 120) * 0.12;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(100, 180, 255, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawConnections();
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // =========================================
+        // NAVIGATION SCROLL
+        // =========================================
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = scrollY;
+        });
+
+        // =========================================
+        // MOBILE MENU
+        // =========================================
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        window.closeMobile = function() {
+            navToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        // =========================================
+        // SCROLL REVEAL ANIMATIONS
+        // =========================================
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // =========================================
+        // COUNTER ANIMATION
+        // =========================================
+        const counters = document.querySelectorAll('.counter');
+        let countersAnimated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000;
+                        const start = performance.now();
+
+                        function updateCounter(timestamp) {
+                            const elapsed = timestamp - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease out cubic
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            counter.textContent = Math.floor(target * eased);
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        }
+
+                        requestAnimationFrame(updateCounter);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) counterObserver.observe(statsSection);
+
+        // =========================================
+        // PROCESS TIMELINE SCROLL FILL
+        // =========================================
+        const processSection = document.querySelector('.process-timeline');
+        const processLineFill = document.getElementById('processLineFill');
+        const processSteps = document.querySelectorAll('.process-step');
+
+        function updateProcessLine() {
+            if (!processSection) return;
+            const rect = processSection.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionHeight = rect.height;
+            const viewportHeight = window.innerHeight;
+
+            const progress = Math.max(0, Math.min(1, (viewportHeight * 0.5 - sectionTop) / sectionHeight));
+            processLineFill.style.height = (progress * 100) + '%';
+
+            processSteps.forEach((step, i) => {
+                const stepRect = step.getBoundingClientRect();
+                if (stepRect.top < viewportHeight * 0.6) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateProcessLine);
+
+        // =========================================
+        // 3D TILT EFFECT ON PRODUCT CARDS
+        // =========================================
+        const tiltCards = document.querySelectorAll('[data-tilt]');
+
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -4;
+                const rotateY = ((x - centerX) / centerX) * 4;
+
+                card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // =========================================
+        // CURSOR GLOW (Desktop only)
+        // =========================================
+        const cursorGlow = document.getElementById('cursorGlow');
+        const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+
+        if (!isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+                cursorGlow.classList.add('visible');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.classList.remove('visible');
+            });
+        }
+
+        // =========================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // =========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+    })();
+    </script>
+</body>
+</html>

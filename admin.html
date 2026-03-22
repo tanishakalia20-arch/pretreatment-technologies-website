@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Pretreatment Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --brand: #981917;
+            --brand-light: #fef2f2;
+            --blue: #2563eb;
+            --blue-light: #eff6ff;
+            --green: #16a34a;
+            --green-light: #f0fdf4;
+            --amber: #d97706;
+            --amber-light: #fffbeb;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           LOGIN SCREEN
+           ============================================ */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .login-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 48px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .login-logo {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 32px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: inherit;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .login-input:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(152,25,23,0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--brand);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover { background: #7a1412; }
+
+        .login-error {
+            color: var(--brand);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* ============================================
+           ADMIN LAYOUT
+           ============================================ */
+        .admin { display: none; }
+        .admin.visible { display: block; }
+
+        .admin-header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-brand-name {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--brand);
+        }
+
+        .admin-brand-badge {
+            padding: 4px 10px;
+            background: var(--gray-100);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-save {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .btn-save:hover { background: #15803d; }
+
+        .btn-preview {
+            background: var(--white);
+            color: var(--gray-700);
+            border-color: var(--gray-200);
+        }
+
+        .btn-preview:hover { background: var(--gray-50); border-color: var(--gray-300); }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--gray-400);
+            padding: 10px 12px;
+        }
+
+        .btn-logout:hover { color: var(--gray-600); }
+
+        /* ============================================
+           SIDEBAR + MAIN
+           ============================================ */
+        .admin-body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+            min-height: calc(100vh - 64px);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 96px;
+            align-self: start;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .sidebar-nav li a:hover { background: var(--gray-100); color: var(--gray-700); }
+        .sidebar-nav li a.active { background: var(--brand-light); color: var(--brand); font-weight: 600; }
+
+        .sidebar-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+
+        /* ============================================
+           CONTENT PANELS
+           ============================================ */
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .panel-desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        /* ============================================
+           FORM ELEMENTS
+           ============================================ */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-child { margin-bottom: 0; }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: 4px;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--gray-900);
+            background: var(--white);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* ============================================
+           PRODUCT LIST (editable)
+           ============================================ */
+        .product-list-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            transition: all 0.15s;
+        }
+
+        .product-list-item:hover {
+            background: var(--white);
+            border-color: var(--gray-200);
+            box-shadow: var(--shadow);
+        }
+
+        .product-list-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .product-list-info { flex: 1; min-width: 0; }
+
+        .product-list-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+        }
+
+        .product-list-cat {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .product-list-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+            color: var(--gray-500);
+        }
+
+        .btn-icon:hover { background: var(--gray-50); border-color: var(--gray-300); }
+        .btn-icon.danger:hover { background: #fef2f2; border-color: #fecaca; color: var(--brand); }
+
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            background: var(--gray-50);
+            border: 2px dashed var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .btn-add:hover {
+            background: var(--blue-light);
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* ============================================
+           MODAL (for editing a product)
+           ============================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            border-radius: var(--radius) var(--radius) 0 0;
+            z-index: 1;
+        }
+
+        .modal-title { font-size: 1.15rem; font-weight: 700; }
+
+        .modal-close {
+            width: 32px; height: 32px;
+            border: none; background: var(--gray-100);
+            border-radius: 50%; cursor: pointer;
+            font-size: 1rem; color: var(--gray-500);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.15s;
+        }
+
+        .modal-close:hover { background: var(--gray-200); }
+
+        .modal-body { padding: 28px; }
+
+        .modal-footer {
+            padding: 20px 28px;
+            border-top: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-cancel {
+            padding: 10px 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--gray-600);
+        }
+
+        .btn-modal-save {
+            padding: 10px 24px;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-modal-save:hover { background: #1d4ed8; }
+
+        /* ============================================
+           TOAST NOTIFICATION
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            padding: 16px 24px;
+            background: var(--gray-900);
+            color: var(--white);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success { background: var(--green); }
+        .toast.error { background: var(--brand); }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .admin-body {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 4px;
+                padding-bottom: 4px;
+            }
+
+            .sidebar-nav li a {
+                white-space: nowrap;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header { padding: 0 16px; }
+
+            .admin-actions .btn span.hide-mobile { display: none; }
+
+            .login-box { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">Pretreatment Technologies</div>
+            <p class="login-subtitle">Admin Dashboard</p>
+            <input type="password" class="login-input" id="loginPassword" placeholder="Enter admin password" autofocus>
+            <button class="login-btn" id="loginBtn">Sign In</button>
+            <p class="login-error" id="loginError">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div class="admin" id="adminPanel">
+
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-inner">
+                <div class="admin-brand">
+                    <span class="admin-brand-name">Pretreatment Technologies</span>
+                    <span class="admin-brand-badge">Admin</span>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn btn-preview" onclick="window.open('index.html','_blank')">
+                        <span>&#128065;</span> <span class="hide-mobile">Preview Site</span>
+                    </button>
+                    <button class="btn btn-save" id="saveBtn">
+                        <span>&#128190;</span> <span class="hide-mobile">Save &amp; Download</span>
+                    </button>
+                    <button class="btn btn-logout" id="logoutBtn" title="Logout">&#9211;</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Body -->
+        <div class="admin-body">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="active" data-panel="dashboard"><span class="sidebar-icon">&#127968;</span> Dashboard</a></li>
+                    <li><a href="#" data-panel="hero"><span class="sidebar-icon">&#9733;</span> Hero</a></li>
+                    <li><a href="#" data-panel="about"><span class="sidebar-icon">&#128196;</span> About</a></li>
+                    <li><a href="#" data-panel="industrial"><span class="sidebar-icon">&#9879;</span> Industrial</a></li>
+                    <li><a href="#" data-panel="oils"><span class="sidebar-icon">&#127807;</span> Essential Oils</a></li>
+                    <li><a href="#" data-panel="ppe"><span class="sidebar-icon">&#128737;</span> PPE</a></li>
+                    <li><a href="#" data-panel="household"><span class="sidebar-icon">&#10024;</span> Household</a></li>
+                    <li><a href="#" data-panel="stats"><span class="sidebar-icon">&#128200;</span> Stats</a></li>
+                    <li><a href="#" data-panel="settings"><span class="sidebar-icon">&#9881;</span> Settings</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main>
+                <!-- Dashboard -->
+                <div class="panel active" id="panel-dashboard">
+                    <h2 class="panel-title">Welcome back!</h2>
+                    <p class="panel-desc">Manage your website content from here. Click a section on the left to edit it.</p>
+
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px;">
+                        <div class="card" style="text-align:center;padding:24px;">
+                            <div style="font-size:2rem;margin-bottom:4px;" id="dash-total">0</div>
+                            <div style="font-size:0.8rem;color:var(--gray-400);">Total Products</div>
+                        </div>
+                        <div class="card" style="text-align:center;padding:24px;">
+                            <div style="font-size:2rem;margin-bottom:4px;">4</div>
+                            <div style="font-size:0.8rem;color:var(--gray-400);">Categories</div>
+                        </div>
+                        <div class="card" style="text-align:center;padding:24px;">
+                            <div style="font-size:2rem;margin-bottom:4px;" id="dash-years">35+</div>
+                            <div style="font-size:0.8rem;color:var(--gray-400);">Years</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Quick Guide</div>
+                        <div style="font-size:0.9rem;color:var(--gray-600);line-height:1.8;">
+                            <p><strong>1.</strong> Click any section on the left sidebar to edit its content.</p>
+                            <p><strong>2.</strong> Edit text, add or remove products, change descriptions.</p>
+                            <p><strong>3.</strong> Click the green <strong>"Save &amp; Download"</strong> button at the top to download your updated data file.</p>
+                            <p><strong>4.</strong> Upload the downloaded <code>site-data.js</code> file to your website hosting to publish changes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="panel" id="panel-hero">
+                    <h2 class="panel-title">Hero Section</h2>
+                    <p class="panel-desc">The first thing visitors see when they land on your website.</p>
+
+                    <div class="card">
+                        <div class="card-title">Hero Content</div>
+                        <div class="form-group">
+                            <label class="form-label">Badge Text</label>
+                            <input type="text" class="form-input" data-bind="hero.badge">
+                            <p class="form-hint">Small text shown above the main title (e.g. "Precision Chemistry Since 1989")</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Title — Line 1</label>
+                            <input type="text" class="form-input" data-bind="hero.titleLine1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Title — Line 2 (Gradient Text)</label>
+                            <input type="text" class="form-input" data-bind="hero.titleLine2">
+                            <p class="form-hint">This line appears in the colorful gradient style</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subtitle</label>
+                            <textarea class="form-textarea" data-bind="hero.subtitle" rows="3"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Primary Button Text</label>
+                                <input type="text" class="form-input" data-bind="hero.ctaPrimary">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Secondary Button Text</label>
+                                <input type="text" class="form-input" data-bind="hero.ctaSecondary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="panel" id="panel-about">
+                    <h2 class="panel-title">About Section</h2>
+                    <p class="panel-desc">Tell your company's story.</p>
+
+                    <div class="card">
+                        <div class="card-title">About Content</div>
+                        <div class="form-group">
+                            <label class="form-label">Section Title</label>
+                            <input type="text" class="form-input" data-bind="about.title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraph 1</label>
+                            <textarea class="form-textarea" data-bind="about.paragraph1" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraph 2</label>
+                            <textarea class="form-textarea" data-bind="about.paragraph2" rows="4"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Big Number</label>
+                                <input type="text" class="form-input" data-bind="about.statNumber">
+                                <p class="form-hint">e.g. "35+"</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Number Label</label>
+                                <input type="text" class="form-input" data-bind="about.statLabel">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industrial Products -->
+                <div class="panel" id="panel-industrial">
+                    <h2 class="panel-title">Industrial &amp; Phosphating Chemicals</h2>
+                    <p class="panel-desc">Your core product range. Add, edit, or remove products below.</p>
+                    <div id="list-industrial"></div>
+                    <button class="btn-add" onclick="addProduct('industrial')">+ Add New Product</button>
+                </div>
+
+                <!-- Essential Oils -->
+                <div class="panel" id="panel-oils">
+                    <h2 class="panel-title">Essential Oils</h2>
+                    <p class="panel-desc">Your wellness product range.</p>
+                    <div id="list-essentialOils"></div>
+                    <button class="btn-add" onclick="addProduct('essentialOils')">+ Add New Product</button>
+                </div>
+
+                <!-- PPE -->
+                <div class="panel" id="panel-ppe">
+                    <h2 class="panel-title">Personal Protective Equipment</h2>
+                    <p class="panel-desc">Safety and protection products.</p>
+                    <div id="list-ppe"></div>
+                    <button class="btn-add" onclick="addProduct('ppe')">+ Add New Product</button>
+                </div>
+
+                <!-- Household -->
+                <div class="panel" id="panel-household">
+                    <h2 class="panel-title">Household Products</h2>
+                    <p class="panel-desc">Eco-friendly home products.</p>
+                    <div id="list-household"></div>
+                    <button class="btn-add" onclick="addProduct('household')">+ Add New Product</button>
+                </div>
+
+                <!-- Stats -->
+                <div class="panel" id="panel-stats">
+                    <h2 class="panel-title">Statistics</h2>
+                    <p class="panel-desc">The numbers displayed on your homepage.</p>
+                    <div class="card" id="stats-editor"></div>
+                </div>
+
+                <!-- Settings -->
+                <div class="panel" id="panel-settings">
+                    <h2 class="panel-title">Company Settings</h2>
+                    <p class="panel-desc">Basic company information.</p>
+
+                    <div class="card">
+                        <div class="card-title">Company Details</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-input" data-bind="company.name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tagline</label>
+                                <input type="text" class="form-input" data-bind="company.tagline">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" data-bind="company.email">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-input" data-bind="company.phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Website URL</label>
+                            <input type="text" class="form-input" data-bind="company.website">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Year Established</label>
+                                <input type="text" class="form-input" data-bind="company.established">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Admin Password</label>
+                                <input type="text" class="form-input" id="newPassword" placeholder="Enter new password">
+                                <p class="form-hint">Leave blank to keep current password</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Product Edit Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Edit Product</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="modal-category">
+                <input type="hidden" id="modal-index">
+                <div class="form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" class="form-input" id="modal-name" placeholder="e.g. PRETREAT 35">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Sub-Category</label>
+                        <input type="text" class="form-input" id="modal-cat" placeholder="e.g. Zinc Phosphating">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Badge (optional)</label>
+                        <input type="text" class="form-input" id="modal-badge" placeholder="e.g. Flagship, Popular">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="modal-desc" rows="4" placeholder="Describe this product..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tags (comma separated)</label>
+                    <input type="text" class="form-input" id="modal-tags" placeholder="e.g. High Purity, Anti-Corrosion, Galvanizing">
+                    <p class="form-hint">These appear as small labels on the product card</p>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Icon (emoji)</label>
+                        <input type="text" class="form-input" id="modal-icon" placeholder="e.g. ⚗">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Background Color</label>
+                        <select class="form-select" id="modal-bg">
+                            <option value="vis-blue">Blue</option>
+                            <option value="vis-teal">Teal</option>
+                            <option value="vis-amber">Amber</option>
+                            <option value="vis-emerald">Emerald</option>
+                            <option value="vis-violet">Violet</option>
+                            <option value="vis-rose">Rose</option>
+                            <option value="vis-slate">Slate</option>
+                            <option value="vis-cyan">Cyan</option>
+                            <option value="vis-orange">Orange</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-modal-save" id="modalSaveBtn">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Load site data -->
+    <script src="site-data.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // =========================================
+        // STATE
+        // =========================================
+        let data = JSON.parse(JSON.stringify(SITE_DATA)); // deep clone
+        const ADMIN_PASSWORD_KEY = 'pt_admin_pw';
+        const DEFAULT_PASSWORD = 'pt2024admin';
+
+        // =========================================
+        // LOGIN
+        // =========================================
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+
+        function getPassword() {
+            return localStorage.getItem(ADMIN_PASSWORD_KEY) || DEFAULT_PASSWORD;
+        }
+
+        function login() {
+            if (loginPassword.value === getPassword()) {
+                loginScreen.style.display = 'none';
+                adminPanel.classList.add('visible');
+                populateAllFields();
+            } else {
+                loginError.style.display = 'block';
+                loginPassword.value = '';
+                loginPassword.focus();
+            }
+        }
+
+        loginBtn.addEventListener('click', login);
+        loginPassword.addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            adminPanel.classList.remove('visible');
+            loginScreen.style.display = 'flex';
+            loginPassword.value = '';
+            loginError.style.display = 'none';
+        });
+
+        // =========================================
+        // SIDEBAR NAVIGATION
+        // =========================================
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const panels = document.querySelectorAll('.panel');
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const panel = link.dataset.panel;
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                panels.forEach(p => p.classList.remove('active'));
+                document.getElementById('panel-' + panel).classList.add('active');
+            });
+        });
+
+        // =========================================
+        // DATA BINDING — populate form fields
+        // =========================================
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce((o, k) => (o || {})[k], obj);
+        }
+
+        function setNestedValue(obj, path, value) {
+            const keys = path.split('.');
+            const last = keys.pop();
+            const target = keys.reduce((o, k) => o[k], obj);
+            target[last] = value;
+        }
+
+        function populateAllFields() {
+            document.querySelectorAll('[data-bind]').forEach(el => {
+                const val = getNestedValue(data, el.dataset.bind) || '';
+                if (el.tagName === 'TEXTAREA') el.value = val;
+                else el.value = val;
+            });
+
+            // Bind change events
+            document.querySelectorAll('[data-bind]').forEach(el => {
+                el.addEventListener('input', () => {
+                    setNestedValue(data, el.dataset.bind, el.value);
+                });
+            });
+
+            // Render product lists
+            renderProductList('industrial', 'list-industrial');
+            renderProductList('essentialOils', 'list-essentialOils');
+            renderProductList('ppe', 'list-ppe');
+            renderProductList('household', 'list-household');
+
+            // Render stats
+            renderStats();
+
+            // Dashboard counts
+            const total = Object.values(data.products).reduce((sum, cat) => sum + cat.items.length, 0);
+            document.getElementById('dash-total').textContent = total;
+            document.getElementById('dash-years').textContent = data.about.statNumber;
+        }
+
+        // =========================================
+        // PRODUCT LIST RENDERING
+        // =========================================
+        const catColorMap = {
+            industrial: '#eff6ff',
+            essentialOils: '#f0fdfa',
+            ppe: '#fffbeb',
+            household: '#f0fdf4'
+        };
+
+        function renderProductList(categoryKey, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const items = data.products[categoryKey].items;
+            container.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const el = document.createElement('div');
+                el.className = 'product-list-item';
+                el.innerHTML = `
+                    <div class="product-list-icon" style="background:${catColorMap[categoryKey] || '#f3f4f6'};">
+                        ${item.icon || '📦'}
+                    </div>
+                    <div class="product-list-info">
+                        <div class="product-list-name">${item.name}</div>
+                        <div class="product-list-cat">${item.category}${item.badge ? ' · ' + item.badge : ''}</div>
+                    </div>
+                    <div class="product-list-actions">
+                        <button class="btn-icon" onclick="editProduct('${categoryKey}', ${index})" title="Edit">&#9998;</button>
+                        <button class="btn-icon danger" onclick="deleteProduct('${categoryKey}', ${index})" title="Delete">&#128465;</button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        // =========================================
+        // PRODUCT MODAL — Edit / Add
+        // =========================================
+        const modal = document.getElementById('productModal');
+
+        window.editProduct = function(categoryKey, index) {
+            const item = data.products[categoryKey].items[index];
+            document.getElementById('modal-category').value = categoryKey;
+            document.getElementById('modal-index').value = index;
+            document.getElementById('modal-name').value = item.name;
+            document.getElementById('modal-cat').value = item.category;
+            document.getElementById('modal-badge').value = item.badge || '';
+            document.getElementById('modal-desc').value = item.description;
+            document.getElementById('modal-tags').value = (item.tags || []).join(', ');
+            document.getElementById('modal-icon').value = item.icon || '';
+            document.getElementById('modal-bg').value = item.bgColor || 'vis-blue';
+            document.getElementById('modalTitle').textContent = 'Edit Product';
+            modal.classList.add('open');
+        };
+
+        window.addProduct = function(categoryKey) {
+            document.getElementById('modal-category').value = categoryKey;
+            document.getElementById('modal-index').value = '-1';
+            document.getElementById('modal-name').value = '';
+            document.getElementById('modal-cat').value = '';
+            document.getElementById('modal-badge').value = '';
+            document.getElementById('modal-desc').value = '';
+            document.getElementById('modal-tags').value = '';
+            document.getElementById('modal-icon').value = '📦';
+            document.getElementById('modal-bg').value = 'vis-blue';
+            document.getElementById('modalTitle').textContent = 'Add New Product';
+            modal.classList.add('open');
+        };
+
+        window.closeModal = function() {
+            modal.classList.remove('open');
+        };
+
+        window.deleteProduct = function(categoryKey, index) {
+            if (confirm('Are you sure you want to delete "' + data.products[categoryKey].items[index].name + '"?')) {
+                data.products[categoryKey].items.splice(index, 1);
+                const listId = categoryKey === 'essentialOils' ? 'list-essentialOils' :
+                               categoryKey === 'ppe' ? 'list-ppe' :
+                               categoryKey === 'household' ? 'list-household' : 'list-industrial';
+                renderProductList(categoryKey, listId);
+                showToast('Product deleted', 'success');
+            }
+        };
+
+        document.getElementById('modalSaveBtn').addEventListener('click', () => {
+            const categoryKey = document.getElementById('modal-category').value;
+            const index = parseInt(document.getElementById('modal-index').value);
+
+            const product = {
+                name: document.getElementById('modal-name').value.trim(),
+                category: document.getElementById('modal-cat').value.trim(),
+                description: document.getElementById('modal-desc').value.trim(),
+                tags: document.getElementById('modal-tags').value.split(',').map(t => t.trim()).filter(Boolean),
+                badge: document.getElementById('modal-badge').value.trim(),
+                icon: document.getElementById('modal-icon').value.trim() || '📦',
+                bgColor: document.getElementById('modal-bg').value
+            };
+
+            if (!product.name) {
+                alert('Please enter a product name.');
+                return;
+            }
+
+            if (index === -1) {
+                data.products[categoryKey].items.push(product);
+            } else {
+                data.products[categoryKey].items[index] = product;
+            }
+
+            const listId = categoryKey === 'essentialOils' ? 'list-essentialOils' :
+                           categoryKey === 'ppe' ? 'list-ppe' :
+                           categoryKey === 'household' ? 'list-household' : 'list-industrial';
+            renderProductList(categoryKey, listId);
+            closeModal();
+            showToast(index === -1 ? 'Product added!' : 'Product updated!', 'success');
+        });
+
+        // =========================================
+        // STATS EDITOR
+        // =========================================
+        function renderStats() {
+            const container = document.getElementById('stats-editor');
+            container.innerHTML = '<div class="card-title">Homepage Statistics</div>';
+
+            data.stats.forEach((stat, i) => {
+                const row = document.createElement('div');
+                row.className = 'form-row';
+                row.style.marginBottom = '16px';
+                row.innerHTML = `
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label class="form-label">Number</label>
+                        <div style="display:flex;gap:8px;">
+                            <input type="number" class="form-input" value="${stat.number}" style="flex:1;" onchange="updateStat(${i},'number',this.value)">
+                            <input type="text" class="form-input" value="${stat.suffix}" style="width:60px;" onchange="updateStat(${i},'suffix',this.value)" placeholder="+">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label class="form-label">Label</label>
+                        <input type="text" class="form-input" value="${stat.label}" onchange="updateStat(${i},'label',this.value)">
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        window.updateStat = function(index, key, value) {
+            if (key === 'number') value = parseInt(value) || 0;
+            data.stats[index][key] = value;
+        };
+
+        // =========================================
+        // SAVE & DOWNLOAD
+        // =========================================
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            // Update password if changed
+            const newPw = document.getElementById('newPassword').value.trim();
+            if (newPw) {
+                localStorage.setItem(ADMIN_PASSWORD_KEY, newPw);
+                document.getElementById('newPassword').value = '';
+            }
+
+            // Generate site-data.js content
+            const jsContent = `// ============================================\n// SITE DATA — Edit via Admin Panel or directly\n// All editable website content lives here\n// ============================================\nconst SITE_DATA = ${JSON.stringify(data, null, 2)};\n\n// Make available globally\nif (typeof window !== 'undefined') {\n  window.SITE_DATA = SITE_DATA;\n}\n`;
+
+            // Download file
+            const blob = new Blob([jsContent], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'site-data.js';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('site-data.js downloaded! Upload it to your website to publish changes.', 'success');
+        });
+
+        // =========================================
+        // TOAST
+        // =========================================
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + (type || '') + ' show';
+            setTimeout(() => { toast.classList.remove('show'); }, 3500);
+        }
+
+    })();
+    </script>
+</body>
+</html>

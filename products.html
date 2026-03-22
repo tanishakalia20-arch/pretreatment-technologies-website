@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — Pretreatment Technologies</title>
+    <meta name="description" content="Explore our complete range of phosphating chemicals, industrial solutions, essential oils, PPE, and eco-friendly household products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            --brand: #981917;
+            --brand-light: rgba(152, 25, 23, 0.08);
+            --brand-glow: rgba(152, 25, 23, 0.12);
+            --accent: #0071e3;
+            --teal: #0d9488;
+            --amber: #d97706;
+            --emerald: #059669;
+            --radius: 16px;
+            --radius-sm: 8px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.2s ease;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-900);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::selection { background: var(--brand); color: var(--white); }
+        a { text-decoration: none; color: inherit; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+        .stagger-7 { transition-delay: 0.7s; }
+        .stagger-8 { transition-delay: 0.8s; }
+        .stagger-9 { transition-delay: 0.9s; }
+
+        /* ============================================
+           NAV (same as homepage)
+           ============================================ */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0 24px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.5s ease;
+        }
+
+        .nav-inner {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 1.25rem;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .nav-logo svg { height: 38px; width: auto; }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 36px; list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem; font-weight: 500; color: var(--gray-500);
+            transition: color var(--transition-fast);
+        }
+
+        .nav-links a:hover { color: var(--gray-900); }
+
+        .nav-cta {
+            padding: 10px 24px; background: var(--brand);
+            color: var(--white) !important; border-radius: 100px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover { transform: scale(1.05); box-shadow: var(--shadow-md); }
+
+        .nav-toggle {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 8px; z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 24px; height: 2px; background: var(--gray-900);
+            border-radius: 2px; transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(30px);
+            z-index: 999; flex-direction: column; align-items: center;
+            justify-content: center; gap: 28px;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+
+        .mobile-menu a {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem;
+            font-weight: 600; color: var(--white);
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+        }
+
+        .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+        .mobile-menu a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu a:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu a:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu a:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu a:hover { color: var(--brand); }
+
+        /* ============================================
+           PAGE HERO
+           ============================================ */
+        .page-hero {
+            padding: 160px 0 100px;
+            background: var(--gray-900);
+            position: relative; overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(152,25,23,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 30%, rgba(0,113,227,0.08) 0%, transparent 50%);
+        }
+
+        .page-hero-content {
+            position: relative; z-index: 2;
+            max-width: 700px;
+        }
+
+        .page-hero .breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; color: rgba(255,255,255,0.4);
+            margin-bottom: 24px;
+        }
+
+        .page-hero .breadcrumb a {
+            color: rgba(255,255,255,0.5);
+            transition: color var(--transition-fast);
+        }
+
+        .page-hero .breadcrumb a:hover { color: var(--white); }
+
+        .page-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700; color: var(--white);
+            line-height: 1.1; letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.5);
+            line-height: 1.7; max-width: 560px;
+        }
+
+        /* ============================================
+           CATEGORY FILTER NAV
+           ============================================ */
+        .filter-bar {
+            position: sticky; top: 72px; z-index: 100;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 24px;
+        }
+
+        .filter-inner {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; gap: 8px; padding: 16px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .filter-inner::-webkit-scrollbar { display: none; }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 0.85rem; font-weight: 500;
+            color: var(--gray-500);
+            background: var(--gray-100);
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+        }
+
+        .filter-btn:hover {
+            color: var(--gray-700);
+            background: var(--gray-200);
+        }
+
+        .filter-btn.active {
+            background: var(--gray-900);
+            color: var(--white);
+            border-color: var(--gray-900);
+        }
+
+        /* ============================================
+           PRODUCT CATEGORY SECTIONS
+           ============================================ */
+        .category-section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .category-section:last-child { border-bottom: none; }
+
+        .category-header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 56px; gap: 24px; flex-wrap: wrap;
+        }
+
+        .category-eyebrow {
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .category-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700; letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .category-desc {
+            font-size: 0.95rem; color: var(--gray-500);
+            max-width: 500px; line-height: 1.7;
+        }
+
+        .category-count {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gray-400); letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        /* ============================================
+           PRODUCT CARDS
+           ============================================ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .product-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: default;
+        }
+
+        .product-item:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-6px);
+        }
+
+        .product-item-visual {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-item-visual-bg {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.6s ease;
+        }
+
+        .product-item:hover .product-item-visual-bg {
+            transform: scale(1.05);
+        }
+
+        .product-item-visual-icon {
+            font-size: 3.5rem;
+            opacity: 0.9;
+        }
+
+        .product-item-visual-pattern {
+            position: absolute; inset: 0;
+            opacity: 0.08;
+            background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .product-item-badge {
+            position: absolute; top: 16px; right: 16px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem; font-weight: 600;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(8px);
+            color: var(--gray-700);
+            letter-spacing: 0.03em;
+        }
+
+        .product-item-body {
+            padding: 28px;
+        }
+
+        .product-item-category {
+            font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .product-item h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem; font-weight: 700;
+            letter-spacing: -0.02em; margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+
+        .product-item p {
+            font-size: 0.88rem; color: var(--gray-500);
+            line-height: 1.65; margin-bottom: 20px;
+        }
+
+        .product-item-tags {
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+
+        .product-item-tag {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem; font-weight: 500;
+            background: var(--gray-50);
+            color: var(--gray-500);
+            border: 1px solid var(--gray-100);
+        }
+
+        .product-item-cta {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; font-weight: 600;
+            margin-top: 20px; padding-top: 20px;
+            border-top: 1px solid var(--gray-100);
+            transition: color var(--transition-fast);
+        }
+
+        .product-item:hover .product-item-cta { color: var(--brand); }
+
+        .product-item-cta svg {
+            width: 14px; height: 14px;
+            transition: transform var(--transition-fast);
+        }
+
+        .product-item:hover .product-item-cta svg { transform: translateX(4px); }
+
+        /* Color themes for visual backgrounds */
+        .vis-blue { background: linear-gradient(135deg, #e8f4fd, #dbeafe); }
+        .vis-blue-dark { background: linear-gradient(135deg, #1e3a5f, #1e40af); }
+        .vis-teal { background: linear-gradient(135deg, #e0f7f5, #ccfbf1); }
+        .vis-amber { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .vis-emerald { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+        .vis-violet { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+        .vis-rose { background: linear-gradient(135deg, #ffe4e6, #fecdd3); }
+        .vis-slate { background: linear-gradient(135deg, #e2e8f0, #cbd5e1); }
+        .vis-cyan { background: linear-gradient(135deg, #cffafe, #a5f3fc); }
+        .vis-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); }
+
+        .cat-blue { color: var(--accent); }
+        .cat-teal { color: var(--teal); }
+        .cat-amber { color: var(--amber); }
+        .cat-emerald { color: var(--emerald); }
+
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+        .products-cta {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+
+        .products-cta-box {
+            background: var(--gray-900);
+            border-radius: var(--radius-xl);
+            padding: 64px;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+
+        .products-cta-box::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(152,25,23,0.15) 0%, transparent 50%);
+        }
+
+        .products-cta-content { position: relative; z-index: 2; }
+
+        .products-cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700; color: var(--white);
+            letter-spacing: -0.03em; margin-bottom: 12px;
+        }
+
+        .products-cta-text {
+            font-size: 1rem; color: rgba(255,255,255,0.5);
+            margin-bottom: 32px; max-width: 500px;
+            margin-left: auto; margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px; background: var(--white);
+            color: var(--gray-900); border-radius: 100px;
+            font-weight: 600; font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            border: none; cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255,255,255,0.2);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 60px 0 32px;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-inner {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .footer-logo svg { height: 32px; width: auto; }
+
+        .footer-copyright {
+            font-size: 0.8rem; color: var(--gray-400);
+        }
+
+        .footer-links {
+            display: flex; gap: 24px; list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem; color: var(--gray-400);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover { color: var(--gray-900); }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .mobile-menu { display: flex; }
+            .products-grid { grid-template-columns: 1fr; }
+            .category-header { flex-direction: column; align-items: flex-start; }
+            .products-cta-box { padding: 40px 24px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
+                    <text x="0" y="24" font-family="Ubuntu, sans-serif" font-weight="700" font-size="20" fill="#981917">Pretreatment</text>
+                    <text x="0" y="40" font-family="Ubuntu, sans-serif" font-weight="700" font-size="14" fill="#981917">Technologies</text>
+                </svg>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="products.html" style="color:var(--gray-900);font-weight:600;">Products</a></li>
+                <li><a href="index.html#industries">Industries</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" onclick="closeMobile()">Home</a>
+        <a href="#industrial" onclick="closeMobile()">Industrial Chemicals</a>
+        <a href="#essential-oils" onclick="closeMobile()">Essential Oils</a>
+        <a href="#ppe" onclick="closeMobile()">PPE</a>
+        <a href="#household" onclick="closeMobile()">Household</a>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <div class="breadcrumb reveal">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Products</span>
+                </div>
+                <h1 class="reveal stagger-1">Our Product Portfolio</h1>
+                <p class="reveal stagger-2">
+                    From precision phosphating chemicals that protect critical surfaces, to pure essential oils that nurture wellbeing — every product in our range is held to the same uncompromising standard.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <div class="filter-bar">
+        <div class="filter-inner">
+            <button class="filter-btn active" data-filter="all">All Products</button>
+            <button class="filter-btn" data-filter="industrial">Industrial &amp; Phosphating</button>
+            <button class="filter-btn" data-filter="essential-oils">Essential Oils</button>
+            <button class="filter-btn" data-filter="ppe">PPE &amp; Safety</button>
+            <button class="filter-btn" data-filter="household">Household</button>
+        </div>
+    </div>
+
+    <!-- ============================================
+         INDUSTRIAL & PHOSPHATING CHEMICALS
+         ============================================ -->
+    <section class="category-section" id="industrial" data-category="industrial">
+        <div class="container-wide">
+            <div class="category-header">
+                <div>
+                    <p class="category-eyebrow cat-blue reveal">01 — Core Range</p>
+                    <h2 class="category-title reveal stagger-1">Industrial &amp; Phosphating Chemicals</h2>
+                    <p class="category-desc reveal stagger-2">
+                        Our flagship product line. Advanced surface treatment formulations engineered for maximum adhesion, corrosion resistance, and coating performance.
+                    </p>
+                </div>
+                <span class="category-count reveal">12 Products</span>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-item reveal stagger-1">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-blue">
+                            <span class="product-item-visual-icon">&#9883;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                        <span class="product-item-badge">Flagship</span>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Zinc Phosphating</p>
+                        <h3>PRETREAT 35</h3>
+                        <p>Our signature zinc phosphate coating solution. Creates a crystalline zinc phosphate layer on steel, iron, and zinc surfaces, providing superior paint adhesion and corrosion resistance for automotive and industrial applications.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Zinc Phosphate</span>
+                            <span class="product-item-tag">Corrosion Resistant</span>
+                            <span class="product-item-tag">Automotive Grade</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-item reveal stagger-2">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-slate">
+                            <span class="product-item-visual-icon">&#9878;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Manganese Phosphating</p>
+                        <h3>PRETREAT MN</h3>
+                        <p>Manganese phosphate coating for wear-resistant applications. Provides excellent oil retention and anti-galling properties, ideal for gears, bearings, and engine components.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Manganese Phosphate</span>
+                            <span class="product-item-tag">Wear Resistant</span>
+                            <span class="product-item-tag">Oil Retention</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-item reveal stagger-3">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-cyan">
+                            <span class="product-item-visual-icon">&#9880;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Iron Phosphating</p>
+                        <h3>PRETREAT 10</h3>
+                        <p>Iron phosphate conversion coating for general-purpose metal pretreatment. A cost-effective solution that delivers reliable paint adhesion and moderate corrosion protection for indoor applications.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Iron Phosphate</span>
+                            <span class="product-item-tag">Cost-Effective</span>
+                            <span class="product-item-tag">Indoor Use</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-item reveal stagger-4">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-violet">
+                            <span class="product-item-visual-icon">&#9879;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                        <span class="product-item-badge">Popular</span>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Surface Coating</p>
+                        <h3>Top Coat DX &amp; EX</h3>
+                        <p>Premium top coat sealant that enhances the phosphate coating's performance. Provides an additional layer of corrosion protection and improves paint adhesion across multiple substrate types.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Sealant</span>
+                            <span class="product-item-tag">Multi-Substrate</span>
+                            <span class="product-item-tag">Enhanced Protection</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-item reveal stagger-5">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-amber">
+                            <span class="product-item-visual-icon">&#9881;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Fine Chemical</p>
+                        <h3>Zinc Dust</h3>
+                        <p>High-purity zinc dust powder used in anti-corrosion coatings, galvanizing processes, and chemical synthesis. Consistent particle size distribution ensures reliable performance in every batch.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">High Purity</span>
+                            <span class="product-item-tag">Anti-Corrosion</span>
+                            <span class="product-item-tag">Galvanizing</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-item reveal stagger-6">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-rose">
+                            <span class="product-item-visual-icon">&#9883;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Fine Chemical</p>
+                        <h3>Barium Carbonate</h3>
+                        <p>Industrial-grade barium carbonate powder used in ceramics, glass manufacturing, and as a flux in metallurgical applications. Manufactured to international quality standards.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Ceramics</span>
+                            <span class="product-item-tag">Glass</span>
+                            <span class="product-item-tag">Metallurgy</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-item reveal stagger-1">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-emerald">
+                            <span class="product-item-visual-icon">&#9879;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Fine Chemical</p>
+                        <h3>Sodium Thiosulphate</h3>
+                        <p>Versatile chemical compound used in water treatment, photography, gold extraction, and as an analytical reagent. Available in high-purity crystalline form.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Water Treatment</span>
+                            <span class="product-item-tag">High Purity</span>
+                            <span class="product-item-tag">Analytical Grade</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-item reveal stagger-2">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-blue">
+                            <span class="product-item-visual-icon">&#9883;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Specialty Chemical</p>
+                        <h3>BILLIONS&trade; BLR-895</h3>
+                        <p>Advanced specialty formulation for demanding industrial applications. Engineered for consistent performance across variable conditions and high-throughput manufacturing environments.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Specialty</span>
+                            <span class="product-item-tag">High Performance</span>
+                            <span class="product-item-tag">Industrial</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-item reveal stagger-3">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-orange">
+                            <span class="product-item-visual-icon">&#9880;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Additive</p>
+                        <h3>Blue Additive + Shiner-Z</h3>
+                        <p>Specialized additive and surface brightener for enhancing the visual appearance and uniformity of phosphate coatings. Creates a consistent, lustrous finish.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Additive</span>
+                            <span class="product-item-tag">Brightener</span>
+                            <span class="product-item-tag">Finish Quality</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-item reveal stagger-4">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-slate">
+                            <span class="product-item-visual-icon">&#9878;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Process Aid</p>
+                        <h3>Antipit No. 10</h3>
+                        <p>Anti-pitting agent designed to eliminate surface defects during the phosphating process. Ensures smooth, uniform coating formation even on complex geometries.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Anti-Pitting</span>
+                            <span class="product-item-tag">Surface Quality</span>
+                            <span class="product-item-tag">Process Aid</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-item reveal stagger-5">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-amber">
+                            <span class="product-item-visual-icon">&#9881;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Brightener</p>
+                        <h3>Auroshine 100</h3>
+                        <p>Premium surface brightening agent that gives metal surfaces a brilliant, uniform finish. Formulated for compatibility with multiple pretreatment chemistries.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Brightener</span>
+                            <span class="product-item-tag">Universal</span>
+                            <span class="product-item-tag">Premium Finish</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-item reveal stagger-6">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-violet">
+                            <span class="product-item-visual-icon">&#9878;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-blue">Specialty Chemical</p>
+                        <h3>Chromax Infixer-199</h3>
+                        <p>Chrome-based surface treatment chemical for applications requiring enhanced corrosion resistance and surface hardness. Delivers consistent, high-quality conversion coating results.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Chrome Based</span>
+                            <span class="product-item-tag">Hardness</span>
+                            <span class="product-item-tag">Conversion Coating</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Technical Data Sheet
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ESSENTIAL OILS
+         ============================================ -->
+    <section class="category-section" id="essential-oils" data-category="essential-oils">
+        <div class="container-wide">
+            <div class="category-header">
+                <div>
+                    <p class="category-eyebrow cat-teal reveal">02 — Wellness Range</p>
+                    <h2 class="category-title reveal stagger-1">Pure Essential Oils</h2>
+                    <p class="category-desc reveal stagger-2">
+                        100% pure, carefully sourced essential and carrier oils. Organic, free from harmful additives — nature's finest, bottled with integrity. Proudly made in India.
+                    </p>
+                </div>
+                <span class="category-count reveal">6 Products</span>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-item reveal stagger-1">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-violet">
+                            <span class="product-item-visual-icon">&#127803;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                        <span class="product-item-badge">Bestseller</span>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Essential Oil</p>
+                        <h3>Lavender Essential Oil</h3>
+                        <p>Premium lavender oil known for its calming and relaxing properties. Perfect for aromatherapy, stress relief, skincare, and promoting restful sleep. Steam-distilled for maximum purity.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Calming</span>
+                            <span class="product-item-tag">Aromatherapy</span>
+                            <span class="product-item-tag">100% Pure</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-2">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-emerald">
+                            <span class="product-item-visual-icon">&#127807;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Essential Oil</p>
+                        <h3>Peppermint Essential Oil</h3>
+                        <p>Invigorating peppermint oil for improved focus, energy, and mental clarity. Also effective for headache relief, muscle relaxation, and respiratory support.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Energizing</span>
+                            <span class="product-item-tag">Focus</span>
+                            <span class="product-item-tag">Therapeutic</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-3">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-teal">
+                            <span class="product-item-visual-icon">&#127811;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Essential Oil</p>
+                        <h3>Eucalyptus Essential Oil</h3>
+                        <p>Refreshing eucalyptus oil with powerful respiratory and immune-boosting benefits. Ideal for steam inhalation, diffusing, and natural cleaning solutions.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Respiratory</span>
+                            <span class="product-item-tag">Immune Boost</span>
+                            <span class="product-item-tag">Refreshing</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-4">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-amber">
+                            <span class="product-item-visual-icon">&#127810;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Essential Oil</p>
+                        <h3>Tea Tree Essential Oil</h3>
+                        <p>Powerful antibacterial and antifungal tea tree oil. A natural remedy for skin blemishes, acne, and minor infections. Also excellent as a natural household disinfectant.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Antibacterial</span>
+                            <span class="product-item-tag">Skincare</span>
+                            <span class="product-item-tag">Natural Remedy</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-5">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-orange">
+                            <span class="product-item-visual-icon">&#127774;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Carrier Oil</p>
+                        <h3>Carrier Oil Collection</h3>
+                        <p>Premium carrier oils including sweet almond, jojoba, and coconut — perfect for diluting essential oils for safe topical use, massage therapy, and skincare formulations.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Carrier Oil</span>
+                            <span class="product-item-tag">Massage</span>
+                            <span class="product-item-tag">Skincare Base</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-6">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-rose">
+                            <span class="product-item-visual-icon">&#127802;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-teal">Essential Oil</p>
+                        <h3>Potassium Permanganate (Wellness Grade)</h3>
+                        <p>Pharmaceutical-grade potassium permanganate for antiseptic and therapeutic applications. Used in dermatological treatments, water purification, and general hygiene solutions.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Antiseptic</span>
+                            <span class="product-item-tag">Pharmaceutical</span>
+                            <span class="product-item-tag">Purification</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PPE & SAFETY
+         ============================================ -->
+    <section class="category-section" id="ppe" data-category="ppe">
+        <div class="container-wide">
+            <div class="category-header">
+                <div>
+                    <p class="category-eyebrow cat-amber reveal">03 — Safety Range</p>
+                    <h2 class="category-title reveal stagger-1">Personal Protective Equipment</h2>
+                    <p class="category-desc reveal stagger-2">
+                        High-quality protective gear crafted from premium materials. Maximum protection and comfort for healthcare, food processing, and industrial environments.
+                    </p>
+                </div>
+                <span class="category-count reveal">3 Products</span>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-item reveal stagger-1">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-blue">
+                            <span class="product-item-visual-icon">&#128567;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                        <span class="product-item-badge">Essential</span>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-amber">Face Protection</p>
+                        <h3>Surgical Masks</h3>
+                        <p>Medical-grade 3-ply surgical masks providing reliable barrier protection against airborne particles and droplets. Comfortable fit with adjustable nose wire and soft ear loops.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">3-Ply</span>
+                            <span class="product-item-tag">Medical Grade</span>
+                            <span class="product-item-tag">Breathable</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Bulk Pricing
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-2">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-amber">
+                            <span class="product-item-visual-icon">&#9995;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-amber">Hand Protection</p>
+                        <h3>Finger Cots</h3>
+                        <p>Latex and nitrile finger cots for precision handling and protection. Used in electronics assembly, medical examination, and cleanroom environments where full gloves are impractical.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Latex</span>
+                            <span class="product-item-tag">Nitrile</span>
+                            <span class="product-item-tag">Precision</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Bulk Pricing
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-3">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-emerald">
+                            <span class="product-item-visual-icon">&#128737;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-amber">General Safety</p>
+                        <h3>Safety Equipment Kits</h3>
+                        <p>Comprehensive safety equipment packages tailored for industrial, healthcare, and food processing environments. Customizable kits to match your specific safety requirements.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Custom Kits</span>
+                            <span class="product-item-tag">Industrial</span>
+                            <span class="product-item-tag">Healthcare</span>
+                        </div>
+                        <div class="product-item-cta">
+                            Request Custom Quote
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         HOUSEHOLD PRODUCTS
+         ============================================ -->
+    <section class="category-section" id="household" data-category="household">
+        <div class="container-wide">
+            <div class="category-header">
+                <div>
+                    <p class="category-eyebrow cat-emerald reveal">04 — Home Range</p>
+                    <h2 class="category-title reveal stagger-1">Eco-Friendly Household Products</h2>
+                    <p class="category-desc reveal stagger-2">
+                        Natural, non-toxic cleaning and household solutions. Safe for your family and the planet — because effective doesn't have to mean harmful.
+                    </p>
+                </div>
+                <span class="category-count reveal">3 Products</span>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-item reveal stagger-1">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-emerald">
+                            <span class="product-item-visual-icon">&#10024;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                        <span class="product-item-badge">Eco-Friendly</span>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-emerald">Cleaning</p>
+                        <h3>All-Purpose Surface Cleaner</h3>
+                        <p>Plant-based all-purpose cleaner that cuts through grease and grime without harsh chemicals. Safe for all surfaces including countertops, glass, and stainless steel. Fresh, natural scent.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Plant-Based</span>
+                            <span class="product-item-tag">All Surfaces</span>
+                            <span class="product-item-tag">Non-Toxic</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-2">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-cyan">
+                            <span class="product-item-visual-icon">&#128090;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-emerald">Laundry</p>
+                        <h3>Natural Laundry Detergent</h3>
+                        <p>Gentle yet effective laundry detergent made with natural ingredients. Tough on stains, soft on fabrics and skin. Biodegradable formula that's kind to waterways.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Biodegradable</span>
+                            <span class="product-item-tag">Skin-Safe</span>
+                            <span class="product-item-tag">Effective</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item reveal stagger-3">
+                    <div class="product-item-visual">
+                        <div class="product-item-visual-bg vis-teal">
+                            <span class="product-item-visual-icon">&#127793;</span>
+                        </div>
+                        <div class="product-item-visual-pattern"></div>
+                    </div>
+                    <div class="product-item-body">
+                        <p class="product-item-category cat-emerald">Specialty</p>
+                        <h3>Activated Carbon Products</h3>
+                        <p>High-quality activated carbon for water and air purification, odor removal, and filtration applications. Available in granular and powdered forms for home and industrial use.</p>
+                        <div class="product-item-tags">
+                            <span class="product-item-tag">Purification</span>
+                            <span class="product-item-tag">Odor Removal</span>
+                            <span class="product-item-tag">Filtration</span>
+                        </div>
+                        <div class="product-item-cta">
+                            View Product
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="products-cta">
+        <div class="container">
+            <div class="products-cta-box reveal">
+                <div class="products-cta-content">
+                    <h2 class="products-cta-title">Need a Custom Formulation?</h2>
+                    <p class="products-cta-text">
+                        Can't find exactly what you need? Our chemists can develop bespoke solutions tailored to your specific requirements.
+                    </p>
+                    <a href="mailto:pretreatmenttechnologies@gmail.com" class="btn-primary">
+                        Get in Touch
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <svg viewBox="0 0 220 44" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="24" font-family="Ubuntu, sans-serif" font-weight="700" font-size="20" fill="#981917">Pretreatment</text>
+                        <text x="0" y="40" font-family="Ubuntu, sans-serif" font-weight="700" font-size="14" fill="#981917">Technologies</text>
+                    </svg>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <p class="footer-copyright">&copy; 2026 Pretreatment Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site-data.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // =========================================
+        // DYNAMIC PRODUCT RENDERING FROM SITE DATA
+        // =========================================
+        const catMap = {
+            industrial: { id: 'industrial', listSelector: '#industrial .products-grid', colorClass: 'cat-blue', ctaText: 'Request Technical Data Sheet' },
+            essentialOils: { id: 'essential-oils', listSelector: '#essential-oils .products-grid', colorClass: 'cat-teal', ctaText: 'View Product' },
+            ppe: { id: 'ppe', listSelector: '#ppe .products-grid', colorClass: 'cat-amber', ctaText: 'Request Bulk Pricing' },
+            household: { id: 'household', listSelector: '#household .products-grid', colorClass: 'cat-emerald', ctaText: 'View Product' }
+        };
+
+        function renderProducts() {
+            if (typeof SITE_DATA === 'undefined') return;
+
+            Object.entries(catMap).forEach(([key, config]) => {
+                const grid = document.querySelector(config.listSelector);
+                if (!grid || !SITE_DATA.products[key]) return;
+
+                const cat = SITE_DATA.products[key];
+                grid.innerHTML = '';
+
+                // Update category header
+                const section = document.getElementById(config.id);
+                if (section) {
+                    const eyebrow = section.querySelector('.category-eyebrow');
+                    const title = section.querySelector('.category-title');
+                    const desc = section.querySelector('.category-desc');
+                    const count = section.querySelector('.category-count');
+                    if (eyebrow) eyebrow.textContent = cat.eyebrow;
+                    if (title) title.textContent = cat.title;
+                    if (desc) desc.textContent = cat.description;
+                    if (count) count.textContent = cat.items.length + ' Products';
+                }
+
+                cat.items.forEach((item, i) => {
+                    const delay = (i % 6) + 1;
+                    const card = document.createElement('div');
+                    card.className = `product-item reveal stagger-${delay}`;
+                    card.innerHTML = `
+                        <div class="product-item-visual">
+                            <div class="product-item-visual-bg ${item.bgColor || 'vis-blue'}">
+                                <span class="product-item-visual-icon">${item.icon || '📦'}</span>
+                            </div>
+                            <div class="product-item-visual-pattern"></div>
+                            ${item.badge ? `<span class="product-item-badge">${item.badge}</span>` : ''}
+                        </div>
+                        <div class="product-item-body">
+                            <p class="product-item-category ${config.colorClass}">${item.category}</p>
+                            <h3>${item.name}</h3>
+                            <p>${item.description}</p>
+                            <div class="product-item-tags">
+                                ${(item.tags || []).map(t => `<span class="product-item-tag">${t}</span>`).join('')}
+                            </div>
+                            <div class="product-item-cta">
+                                ${config.ctaText}
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+
+            // Re-observe new elements for reveal animation
+            document.querySelectorAll('.reveal:not(.active)').forEach(el => revealObserver.observe(el));
+        }
+
+        // Mobile menu
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        window.closeMobile = function() {
+            navToggle.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Render products from data file (overrides static HTML)
+        renderProducts();
+
+        // Category filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const categorySections = document.querySelectorAll('.category-section');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (filter === 'all') {
+                    categorySections.forEach(s => {
+                        s.style.display = '';
+                        s.style.opacity = '1';
+                    });
+                } else {
+                    categorySections.forEach(s => {
+                        if (s.dataset.category === filter) {
+                            s.style.display = '';
+                            s.style.opacity = '1';
+                        } else {
+                            s.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Reset filter to show all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    filterBtns[0].classList.add('active');
+                    categorySections.forEach(s => { s.style.display = ''; s.style.opacity = '1'; });
+
+                    const offset = 140;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Handle hash on load (from homepage links)
+        if (window.location.hash) {
+            const hash = window.location.hash;
+            setTimeout(() => {
+                const target = document.querySelector(hash);
+                if (target) {
+                    const offset = 140;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+
+                    // Activate correct filter
+                    const category = target.dataset.category;
+                    if (category) {
+                        filterBtns.forEach(b => {
+                            b.classList.remove('active');
+                            if (b.dataset.filter === category) b.classList.add('active');
+                        });
+                        categorySections.forEach(s => {
+                            if (s.dataset.category === category) {
+                                s.style.display = '';
+                            } else {
+                                s.style.display = 'none';
+                            }
+                        });
+                    }
+                }
+            }, 300);
+        }
+    })();
+    </script>
+</body>
+</html>
